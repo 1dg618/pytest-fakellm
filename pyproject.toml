@@ -1,0 +1,56 @@
+[project]
+name = "pytest-fakellm"
+version = "0.1.0"
+description = "Pytest fixtures for the fakellm mock OpenAI/Anthropic server — spin up, reset, and assert with zero boilerplate."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Douglas Gregor", email = "1dg618@gmail.com" }]
+keywords = ["pytest", "fakellm", "llm", "testing", "mock", "openai", "anthropic", "fixtures"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Pytest",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Software Development :: Testing :: Mocking",
+]
+dependencies = [
+    "pytest>=7.0",
+    "httpx>=0.27",
+    "fakellm>=0.3.1",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.40"]
+anthropic = ["anthropic>=0.34"]
+dev = [
+    "openai>=1.40",
+    "anthropic>=0.34",
+]
+
+[project.urls]
+Homepage = "https://github.com/dgregor/fakellm"
+Repository = "https://github.com/dgregor/fakellm"
+Issues = "https://github.com/dgregor/fakellm/issues"
+
+# This is the line that makes the whole thing work: pytest discovers installed
+# plugins via the "pytest11" entry-point group. Once this package is installed,
+# the fixtures in pytest_fakellm.plugin are available with no imports.
+[project.entry-points.pytest11]
+fakellm = "pytest_fakellm.plugin"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pytest_fakellm"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
