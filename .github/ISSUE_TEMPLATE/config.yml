@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/1dg618/pytest-fakellm/security/advisories/new
+    about: Please report security vulnerabilities privately, not as public issues.
+  - name: fakellm server (upstream)
+    url: https://github.com/1dg618/fakellm/issues
+    about: For issues with the fakellm mock server itself, open an issue there.

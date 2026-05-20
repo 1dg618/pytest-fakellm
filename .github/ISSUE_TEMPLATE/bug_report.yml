@@ -1,0 +1,41 @@
+name: Bug report
+description: Report something that isn't working as expected
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug, including what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal reproduction
+      description: A minimal test or snippet that reproduces the problem.
+      render: python
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: "Output of pip show pytest-fakellm fakellm pytest."
+    validations:
+      required: true
+  - type: input
+    id: python-version
+    attributes:
+      label: Python version
+      placeholder: "3.12"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant output or traceback
+      render: shell
+    validations:
+      required: false
