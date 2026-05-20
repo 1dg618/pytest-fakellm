@@ -10,6 +10,7 @@ so the plugin does not couple to fakellm's internals.
 from __future__ import annotations
 
 import contextlib
+import shutil
 import socket
 import subprocess
 import sys
@@ -86,8 +87,11 @@ class FakellmServer:
         if self._executable:
             cmd = [self._executable, "serve"]
         else:
-            # `python -m fakellm serve` is the most portable invocation.
-            cmd = [sys.executable, "-m", "fakellm", "serve"]
+            script = shutil.which("fakellm")
+            if script:
+                cmd = [script, "serve"]
+            else:
+                cmd = [sys.executable, "-m", "fakellm", "serve"]
         cmd += ["--port", str(self.port)]
         if self._config is not None:
             cmd += ["--config", str(self._config)]

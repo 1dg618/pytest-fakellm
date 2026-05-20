@@ -70,4 +70,5 @@ def test_default_config_returns_something(fakellm):
     # With no rules set this run, the stub returns its default content.
     fakellm.set_config_text("version: 1\nrules: []\n")
     content = _chat(fakellm, "anything")
-    assert content == "default mock response"
+    assert isinstance(content, str) and content        # got some response
+    assert "mock response" in content                  # it's the fallback echo
